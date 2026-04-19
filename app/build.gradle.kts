@@ -6,8 +6,9 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.firebase.crashlytics)
     alias(libs.plugins.ksp)
-    alias(libs.plugins.firebaseCrashlytics)
+    alias(libs.plugins.hilt)
 }
 
 android {
@@ -88,5 +89,10 @@ dependencies {
     implementation(libs.firebase.messaging)
     implementation(libs.firebase.crashlytics)
     implementation(libs.firebase.config)
+
+    // Hilt
+    implementation(libs.hilt.android)
+    implementation(libs.hilt.navigation.compose)
+    ksp(libs.hilt.compiler)
 }
 

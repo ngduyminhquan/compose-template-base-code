@@ -1,4 +1,4 @@
-package com.project.composeproject
+package com.project.composeproject.ui.screen
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
