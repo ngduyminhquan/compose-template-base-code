@@ -12,9 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ComposeProject">
         <activity
-            android:name=".ui.screen.MainActivity"
+            android:name=".ui.screen.LauncherActivity"
             android:exported="true"
-            android:label="@string/app_name"
             android:theme="@style/Theme.ComposeProject">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
