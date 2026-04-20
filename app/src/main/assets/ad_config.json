@@ -1,0 +1,131 @@
+{
+  "global": {
+    "enable": true,
+    "cmp_auto": true,
+    "min_interval": 35000
+  },
+  "placements": [
+    {
+      "placement": "inter_splash",
+      "adsType": "interstitial",
+      "ids": [
+        "ca-app-pub-3940256099942544/1033173712"
+      ],
+      "enable": true
+    },
+    {
+      "placement": "native_language_1",
+      "adsType": "native",
+      "ids": [
+        "ca-app-pub-3940256099942544/2247696110"
+      ],
+      "heightCTA": 50,
+      "enable": true
+    },
+    {
+      "placement": "native_language_1_click",
+      "adsType": "native",
+      "ids": [
+        "ca-app-pub-3940256099942544/2247696110"
+      ],
+      "heightCTA": 50,
+      "enable": true
+    },
+    {
+      "placement": "native_language_2",
+      "adsType": "native",
+      "ids": [
+        "ca-app-pub-3940256099942544/2247696110"
+      ],
+      "heightCTA": 50,
+      "enable": true
+    },
+    {
+      "placement": "native_language_2_click",
+      "adsType": "native",
+      "ids": [
+        "ca-app-pub-3940256099942544/2247696110"
+      ],
+      "heightCTA": 50,
+      "enable": true
+    },
+    {
+      "placement": "native_onboarding_1_1",
+      "adsType": "native",
+      "ids": [
+        "ca-app-pub-3940256099942544/2247696110"
+      ],
+      "heightCTA": 50,
+      "enable": true
+    },
+    {
+      "placement": "native_onboarding_2_1",
+      "adsType": "native",
+      "ids": [
+        "ca-app-pub-3940256099942544/2247696110"
+      ],
+      "heightCTA": 50,
+      "enable": true
+    },
+    {
+      "placement": "native_onboarding_1_4",
+      "adsType": "native",
+      "ids": [
+        "ca-app-pub-3940256099942544/2247696110"
+      ],
+      "heightCTA": 50,
+      "enable": true
+    },
+    {
+      "placement": "native_onboarding_2_4",
+      "adsType": "native",
+      "ids": [
+        "ca-app-pub-3940256099942544/2247696110"
+      ],
+      "heightCTA": 50,
+      "enable": true
+    },
+    {
+      "placement": "native_onboarding_fullscreen_1_2",
+      "adsType": "native",
+      "ids": [
+        "ca-app-pub-3940256099942544/2247696110"
+      ],
+      "heightCTA": 50,
+      "enable": true
+    },
+    {
+      "placement": "native_onboarding_fullscreen_2_2",
+      "adsType": "native",
+      "ids": [
+        "ca-app-pub-3940256099942544/2247696110"
+      ],
+      "heightCTA": 50,
+      "enable": true
+    },
+    {
+      "placement": "open_resume",
+      "adsType": "open_app",
+      "ids": [
+        "ca-app-pub-3940256099942544/9257395921"
+      ],
+      "enable": true
+    },
+    {
+      "placement": "inter_onboarding",
+      "adsType": "interstitial",
+      "ids": [
+        "ca-app-pub-3940256099942544/1033173712"
+      ],
+      "enable": true
+    },
+    {
+      "placement": "banner_all",
+      "adsType": "banner",
+      "ids": [
+        "ca-app-pub-3940256099942544/9214589741"
+      ],
+      "enable": true
+    }
+  ]
+}

@@ -38,11 +38,19 @@ android {
 
     buildTypes {
         debug {
+            val appId = "ca-app-pub-3940256099942544~3347511713"
+            manifestPlaceholders["app_id"] = appId
+            buildConfigField("String", "APP_ID", "\"$appId\"")
+
             versionNameSuffix = "-dev"
             isMinifyEnabled = false
             isShrinkResources = false
         }
         release {
+            val appId = "ca-app-pub-7208941695689653~9843350590"
+            manifestPlaceholders["app_id"] = appId
+            buildConfigField("String", "APP_ID", "\"$appId\"")
+
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(
@@ -61,6 +69,7 @@ android {
 
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 }
 
