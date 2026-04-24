@@ -18,6 +18,7 @@ import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
 import com.project.composeproject.ui.navigation.Route
 import com.project.composeproject.ui.screen.home.HomeScreen
+import com.project.composeproject.ui.screen.setting.SettingScreen
 import com.project.composeproject.ui.theme.ComposeProjectTheme
 import dagger.hilt.android.AndroidEntryPoint
 

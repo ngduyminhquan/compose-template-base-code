@@ -7,10 +7,6 @@ import android.widget.FrameLayout
 import androidx.annotation.LayoutRes
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.viewinterop.AndroidView
 import com.admob.next.gen.callback.ITGNativeCallback
@@ -25,11 +21,8 @@ fun NativeAdView(
     @LayoutRes layoutRes: Int = com.admob.next.gen.R.layout.layout_native_large,
     @LayoutRes shimmerLayoutRes: Int = com.admob.next.gen.R.layout.ads_shimmer_native_large,
 
-    forcePopulate: Boolean = false,
     fillMaxHeight: Boolean = false
 ) {
-    var isPopulated by remember { mutableStateOf(false) }
-
     fun getAdContainer(context: Context): FrameLayout {
         return FrameLayout(context).apply {
             val width = ViewGroup.LayoutParams.MATCH_PARENT
@@ -53,15 +46,12 @@ fun NativeAdView(
                 modifier = modifier.fillMaxWidth(),
                 factory = ::getAdContainer,
                 update = { container ->
-                    if (!isPopulated || forcePopulate) {
-                        ITGAdsNative.showLarge(
-                            placement = adState.placement,
-                            layoutRes = layoutRes,
-                            viewGroup = container,
-                            callback = object : ITGNativeCallback() {}
-                        )
-                    }
-                    isPopulated = true
+                    ITGAdsNative.showLarge(
+                        placement = adState.placement,
+                        layoutRes = layoutRes,
+                        viewGroup = container,
+                        callback = object : ITGNativeCallback() {}
+                    )
                 }
             )
         }

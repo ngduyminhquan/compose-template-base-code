@@ -1,6 +1,9 @@
 package com.project.composeproject.ads.utils
 
 import android.util.Log
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.lifecycleScope
 import com.admob.next.gen.ads.ITGAdsBanner
 import com.admob.next.gen.ads.ITGAdsRewarded
 import com.admob.next.gen.ads.ITGIAdsInter
@@ -16,8 +19,11 @@ import com.admob.next.gen.rewarded.ITGRewardedError
 import com.google.android.libraries.ads.mobile.sdk.MobileAds
 import com.google.android.libraries.ads.mobile.sdk.banner.AdView
 import com.project.composeproject.BuildConfig
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.isActive
+import kotlinx.coroutines.launch
 
 private const val TAG = "AdLoader"
 
@@ -32,7 +38,8 @@ object AdLoader {
 
     fun loadNative(
         placement: String,
-        layoutRes: Int = com.admob.next.gen.R.layout.layout_native_large
+        layoutRes: Int = com.admob.next.gen.R.layout.layout_native_large,
+        forceRefresh: Boolean = false
     ) {
         if (!MobileAds.isInitialized) {
             val errorMessage = "Mobile ads not initialized"
@@ -48,7 +55,7 @@ object AdLoader {
             debugLog("loadNative - $placement - Already loading")
             return
         }
-        if (state is AdState.Loaded) {
+        if (state is AdState.Loaded && !forceRefresh) {
             debugLog("loadNative - $placement - Already loaded")
             return
         }
@@ -154,6 +161,29 @@ object AdLoader {
                 }
             }
         )
+    }
+
+    fun autoReloadBanner(
+        placement: String,
+        lifecycleOwner: LifecycleOwner,
+        intervalReloadTime: Long = 30_000L
+    ) {
+        if (!MobileAds.isInitialized) {
+            val errorMessage = "Mobile ads not initialized"
+            debugLog("autoReloadBanner - $placement - $errorMessage")
+            adsPool[placement]?.value = AdState.Error(errorMessage)
+            return
+        }
+
+        debugLog("autoReloadBanner - $placement - start auto reload")
+        lifecycleOwner.lifecycleScope.launch {
+            while (isActive) {
+                if (lifecycleOwner.lifecycle.currentState == Lifecycle.State.RESUMED) {
+                    loadBanner(placement, true)
+                }
+                delay(intervalReloadTime)
+            }
+        }
     }
 
     fun loadReward(
