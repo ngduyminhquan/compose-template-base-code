@@ -14,6 +14,7 @@ import com.admob.next.gen.banner.ITGCollapsiblePosition
 import com.admob.next.gen.callback.ITGBannerCallback
 import com.google.android.libraries.ads.mobile.sdk.banner.AdSize
 import com.project.composeproject.ads.utils.AdState
+import com.project.composeproject.ads.utils.AdUtils
 
 @Composable
 fun BannerAdView(
@@ -43,7 +44,7 @@ fun BannerAdView(
         }
 
         is AdState.Loaded -> {
-//            AdUtils.tryToCloseCollapsibleBanner()
+            AdUtils.tryToCloseCollapsibleBanner()
             AndroidView(
                 modifier = modifier.fillMaxWidth(),
                 factory = ::getAdContainer,
