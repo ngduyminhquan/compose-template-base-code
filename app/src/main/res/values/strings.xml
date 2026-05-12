@@ -3,4 +3,16 @@
     <string name="language_title">Language</string>
     <string name="language_done">DONE</string>
     <string name="language_done_icon_description">Done</string>
+    
+    <!-- Onboarding -->
+    <string name="onboarding_title_1">Smart IPTV Player</string>
+    <string name="onboarding_subtitle_1">Stream your favorite playlists and media seamlessly on any device.</string>
+    <string name="onboarding_title_2">Diverse Content Universe</string>
+    <string name="onboarding_subtitle_2">Access a massive library of movies, shows, and games instantly.</string>
+    <string name="onboarding_title_3">Seamless Cast &amp; Control</string>
+    <string name="onboarding_subtitle_3">Cast to your TV with one tap and manage everything from your phone.</string>
+    <string name="onboarding_title_4">Personalized Entertainment</string>
+    <string name="onboarding_subtitle_4">Discover and watch live IPTV shared from around the world.</string>
+    <string name="onboarding_next">NEXT</string>
+    <string name="onboarding_start">START</string>
 </resources>

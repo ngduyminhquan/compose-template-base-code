@@ -3,6 +3,8 @@ package com.project.composeproject.ui.screen.language
 import androidx.activity.compose.LocalActivity
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -29,7 +31,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.scale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -47,7 +48,9 @@ import network.chaintech.sdpcomposemultiplatform.sdp
 import network.chaintech.sdpcomposemultiplatform.ssp
 
 @Composable
-fun LanguageScreen() {
+fun LanguageScreen(
+    onNavigateToOnboardingScreen: () -> Unit
+) {
     val context = LocalContext.current
     val activity = LocalActivity.current
     val languages = remember { LanguageUtils.displayLanguages }
@@ -60,6 +63,7 @@ fun LanguageScreen() {
         onDoneClick = {
             LanguageUtils.setCurrentLanguage(context, selectedLanguageCode)
             activity?.recreate()
+            onNavigateToOnboardingScreen()
         }
     )
 }
@@ -99,6 +103,8 @@ private fun LanguageContent(
 
 @Composable
 private fun LanguageTopBar(onDoneClick: () -> Unit) {
+    val interactionSource = remember { MutableInteractionSource() }
+
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -115,8 +121,9 @@ private fun LanguageTopBar(onDoneClick: () -> Unit) {
         )
         Spacer(modifier = Modifier.weight(1f))
         Row(
-            modifier = Modifier.selectable(
-                selected = false,
+            modifier = Modifier.clickable(
+                interactionSource = interactionSource,
+                indication = null,
                 onClick = onDoneClick
             ),
             verticalAlignment = Alignment.CenterVertically
