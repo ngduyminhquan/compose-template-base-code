@@ -27,7 +27,7 @@ class SplashActivity : AppCompatActivity() {
 
     private fun startLauncherActivity() {
         lifecycleScope.launch {
-            delay(5_000)
+            delay(1_000)
             val intent = LauncherActivity.newIntent(this@SplashActivity)
             startActivity(intent)
             finishAffinity()

@@ -18,6 +18,7 @@ nav3-core = "1.1.0"
 nav3-viewmodel = "2.10.0"
 landscapist = "2.4.7"
 appcompat = "1.7.1"
+sdpSspComposeMultiplatform = "1.0.7"
 
 [libraries]
 adsnextgen = { module = "com.github.trongluan99:AdsNextGen", version.ref = "adsnextgen" }
@@ -44,6 +45,7 @@ androidx-navigation3-ui = { module = "androidx.navigation3:navigation3-ui", vers
 androidx-navigation3-lifecycle-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel-navigation3", version.ref = "nav3-viewmodel" }
 landscapist-coil = { module = "com.github.skydoves:landscapist-coil", version.ref = "landscapist" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+sdp-ssp-compose-multiplatform = { module = "network.chaintech:sdp-ssp-compose-multiplatform", version.ref = "sdpSspComposeMultiplatform" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

@@ -116,5 +116,8 @@ dependencies {
 
     // Coil
     implementation(libs.landscapist.coil)
+
+    // Sdp, ssp
+    implementation(libs.sdp.ssp.compose.multiplatform)
 }
 

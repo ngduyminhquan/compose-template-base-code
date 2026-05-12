@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Compose Project</string>
+    <string name="language_title">Language</string>
+    <string name="language_done">DONE</string>
+    <string name="language_done_icon_description">Done</string>
 </resources>
