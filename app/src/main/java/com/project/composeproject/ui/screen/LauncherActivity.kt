@@ -1,41 +1,27 @@
 package com.project.composeproject.ui.screen
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.WindowInsetsControllerCompat
-import androidx.core.view.WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+import androidx.appcompat.app.AppCompatActivity
 import com.project.composeproject.ui.navigation.AppNavigation
+import com.project.composeproject.ui.utils.applySystemBarsSetting
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class LauncherActivity : ComponentActivity() {
 
+    companion object {
+        fun newIntent(activity: AppCompatActivity): Intent {
+            return Intent(activity, LauncherActivity::class.java)
+        }
+    }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        enableEdgeToEdge()
-        ViewCompat.setOnApplyWindowInsetsListener(window.decorView) { view, insets ->
-            val controller = WindowInsetsControllerCompat(window, view)
-            hideSystemBars(controller)
-            applyLightAppearance(controller)
-            insets
-        }
-
+        applySystemBarsSetting()
         setContent { AppNavigation() }
-    }
-
-    private fun applyLightAppearance(controller: WindowInsetsControllerCompat) {
-        controller.isAppearanceLightStatusBars = false
-        controller.isAppearanceLightNavigationBars = false
-    }
-
-    private fun hideSystemBars(controller: WindowInsetsControllerCompat) {
-        val navigationType = WindowInsetsCompat.Type.navigationBars()
-        controller.hide(navigationType)
-        controller.systemBarsBehavior = BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
     }
 }

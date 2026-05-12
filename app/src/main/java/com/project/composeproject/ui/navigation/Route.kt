@@ -4,9 +4,12 @@ import androidx.navigation3.runtime.NavKey
 import kotlinx.serialization.Serializable
 
 sealed interface Route : NavKey {
-    @Serializable
-    data object Home : Route
 
     @Serializable
-    data object Setting : Route
+    data class Language(
+        val fromSetting: Boolean
+    ) : Route
+
+    @Serializable
+    data object Onboarding : Route
 }

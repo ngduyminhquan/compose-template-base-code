@@ -8,13 +8,11 @@ import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
-import com.project.composeproject.ui.screen.home.HomeScreen
-import com.project.composeproject.ui.screen.setting.SettingScreen
 
 @Composable
 fun AppNavigation() {
     Box {
-        val backStack = rememberNavBackStack(Route.Home)
+        val backStack = rememberNavBackStack(Route.Language(fromSetting = false))
         NavDisplay(
             backStack = backStack,
             entryDecorators = listOf(
@@ -22,16 +20,12 @@ fun AppNavigation() {
                 rememberViewModelStoreNavEntryDecorator()
             ),
             entryProvider = entryProvider {
-                entry(Route.Home) {
-                    HomeScreen(
-                        onNavigateToSetting = {
-                            backStack.add(Route.Setting)
-                        }
-                    )
+                entry<Route.Language> { key ->
+
                 }
 
-                entry(Route.Setting) {
-                    SettingScreen()
+                entry<Route.Onboarding> {
+
                 }
             }
         )

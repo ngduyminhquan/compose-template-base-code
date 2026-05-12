@@ -17,6 +17,7 @@ kotlinx-serialization-core = "1.9.0"
 nav3-core = "1.1.0"
 nav3-viewmodel = "2.10.0"
 landscapist = "2.4.7"
+appcompat = "1.7.1"
 
 [libraries]
 adsnextgen = { module = "com.github.trongluan99:AdsNextGen", version.ref = "adsnextgen" }
@@ -42,6 +43,7 @@ androidx-navigation3-runtime = { module = "androidx.navigation3:navigation3-runt
 androidx-navigation3-ui = { module = "androidx.navigation3:navigation3-ui", version.ref = "nav3-core" }
 androidx-navigation3-lifecycle-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel-navigation3", version.ref = "nav3-viewmodel" }
 landscapist-coil = { module = "com.github.skydoves:landscapist-coil", version.ref = "landscapist" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
