@@ -8,6 +8,7 @@ import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
+import com.project.composeproject.ui.screen.language.LanguageScreen
 
 @Composable
 fun AppNavigation() {
@@ -21,7 +22,7 @@ fun AppNavigation() {
             ),
             entryProvider = entryProvider {
                 entry<Route.Language> { key ->
-
+                    LanguageScreen()
                 }
 
                 entry<Route.Onboarding> {
