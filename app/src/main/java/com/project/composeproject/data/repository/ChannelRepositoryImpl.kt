@@ -1,11 +1,18 @@
 package com.project.composeproject.data.repository
 
+import android.net.Uri
+import androidx.room.withTransaction
+import com.project.composeproject.data.core.m3u.M3uChannel
 import com.project.composeproject.data.mapper.toDomain
+import com.project.composeproject.data.source.database.AppDatabase
 import com.project.composeproject.data.source.database.dao.ChannelDao
 import com.project.composeproject.data.source.database.dao.ChannelGroupDao
 import com.project.composeproject.data.source.database.dao.ChannelSourceDao
 import com.project.composeproject.data.source.database.entity.ChannelEntity
+import com.project.composeproject.data.source.database.entity.ChannelGroupEntity
 import com.project.composeproject.data.source.database.entity.ChannelSourceEntity
+import com.project.composeproject.data.source.network.M3uPlaylistNetworkSource
+import com.project.composeproject.data.source.storage.M3uPlaylistStorageSource
 import com.project.composeproject.data.utils.now
 import com.project.composeproject.data.utils.toDataResult
 import com.project.composeproject.data.utils.toException
@@ -25,9 +32,12 @@ import javax.inject.Singleton
 
 @Singleton
 class ChannelRepositoryImpl @Inject constructor(
+    private val appDatabase: AppDatabase,
     private val channelDao: ChannelDao,
     private val channelGroupDao: ChannelGroupDao,
     private val channelSourceDao: ChannelSourceDao,
+    private val m3uPlaylistNetworkSource: M3uPlaylistNetworkSource,
+    private val m3uPlaylistStorageSource: M3uPlaylistStorageSource,
 ) : ChannelRepository {
 
     override fun observeChannels(groupId: Long): Flow<DataResult<List<Channel>>> {
@@ -106,19 +116,25 @@ class ChannelRepositoryImpl @Inject constructor(
             .catch { emit(DataResult.Error(it.toException())) }
     }
 
-    override suspend fun createChannelSource(
-        name: String,
-        sourceType: SourceType,
-    ): DataResult<Long> {
+    override suspend fun createChannelSourceFromUrl(url: String): DataResult<Long> {
         return runCatching {
-            val now = now()
-            channelSourceDao.insert(
-                ChannelSourceEntity(
-                    name = name,
-                    sourceType = sourceType.name,
-                    addedAt = now,
-                    modifiedAt = now,
-                ),
+            val parsedChannels = m3uPlaylistNetworkSource.fetchChannels(url)
+            createChannelSourceWithChannels(
+                name = url.toChannelSourceName(Uri.parse(url)),
+                sourceType = SourceType.URL,
+                parsedChannels = parsedChannels,
+            )
+        }.toDataResult()
+    }
+
+    override suspend fun createChannelSourceFromFile(uri: String): DataResult<Long> {
+        return runCatching {
+            val fileUri = Uri.parse(uri)
+            val parsedChannels = m3uPlaylistStorageSource.fetchChannels(fileUri)
+            createChannelSourceWithChannels(
+                name = uri.toChannelSourceName(fileUri),
+                sourceType = SourceType.FILE,
+                parsedChannels = parsedChannels,
             )
         }.toDataResult()
     }
@@ -154,5 +170,66 @@ class ChannelRepositoryImpl @Inject constructor(
             }
             channelDao.update(transform(channel))
         }.toUnitDataResult()
+    }
+
+    private suspend fun createChannelSourceWithChannels(
+        name: String,
+        sourceType: SourceType,
+        parsedChannels: List<M3uChannel>,
+    ): Long {
+        require(parsedChannels.isNotEmpty()) { "No channels found in source" }
+
+        val now = now()
+        return appDatabase.withTransaction {
+            val sourceId = channelSourceDao.insert(
+                ChannelSourceEntity(
+                    name = name,
+                    sourceType = sourceType.name,
+                    addedAt = now,
+                    modifiedAt = now,
+                )
+            )
+
+            val groupNames = parsedChannels
+                .map { it.groupTitle.ifBlank { DEFAULT_GROUP_NAME } }
+                .distinct()
+            val groupIds = channelGroupDao.insertAll(
+                groupNames.map { groupName ->
+                    ChannelGroupEntity(
+                        sourceId = sourceId,
+                        name = groupName,
+                        modifiedAt = now,
+                    )
+                }
+            )
+            val groupIdByName = groupNames.zip(groupIds).toMap()
+
+            channelDao.insertAll(
+                parsedChannels.map { parsedChannel ->
+                    ChannelEntity(
+                        groupId = groupIdByName.getValue(parsedChannel.groupTitle.ifBlank { DEFAULT_GROUP_NAME }),
+                        name = parsedChannel.name,
+                        url = parsedChannel.url,
+                        logoUrl = parsedChannel.logo,
+                        isFavorited = false,
+                        modifiedAt = now,
+                    )
+                }
+            )
+
+            sourceId
+        }
+    }
+
+    private fun String.toChannelSourceName(uri: Uri): String {
+        return uri.lastPathSegment
+            ?.substringAfterLast('/')
+            ?.takeIf { it.isNotBlank() }
+            ?: takeIf { it.isNotBlank() }
+            ?: "M3U Source"
+    }
+
+    private companion object {
+        const val DEFAULT_GROUP_NAME = "Ungrouped"
     }
 }

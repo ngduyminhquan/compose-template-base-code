@@ -15,6 +15,9 @@ interface ChannelDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(channel: ChannelEntity): Long
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertAll(channels: List<ChannelEntity>): List<Long>
+
     @Update
     suspend fun update(channel: ChannelEntity)
 

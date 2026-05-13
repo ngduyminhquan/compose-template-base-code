@@ -4,7 +4,6 @@ import com.project.composeproject.domain.model.Channel
 import com.project.composeproject.domain.model.ChannelGroup
 import com.project.composeproject.domain.model.ChannelSource
 import com.project.composeproject.domain.model.DataResult
-import com.project.composeproject.domain.model.SourceType
 import kotlinx.coroutines.flow.Flow
 
 interface ChannelRepository {
@@ -35,10 +34,9 @@ interface ChannelRepository {
 
     fun observeChannelSources(): Flow<DataResult<List<ChannelSource>>>
 
-    suspend fun createChannelSource(
-        name: String,
-        sourceType: SourceType,
-    ): DataResult<Long>
+    suspend fun createChannelSourceFromUrl(url: String): DataResult<Long>
+
+    suspend fun createChannelSourceFromFile(uri: String): DataResult<Long>
 
     suspend fun deleteChannelSource(channelSourceId: Long): DataResult<Unit>
 
