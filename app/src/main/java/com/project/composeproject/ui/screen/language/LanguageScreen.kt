@@ -52,6 +52,7 @@ import network.chaintech.sdpcomposemultiplatform.ssp
 @Composable
 fun LanguageScreen(
     fromSetting: Boolean,
+    onNavigateBack: () -> Unit,
     onNavigateToOnboardingScreen: () -> Unit
 ) {
     val context = LocalContext.current
@@ -71,7 +72,9 @@ fun LanguageScreen(
             if (selectedLanguageCode == null) return@LanguageContent
             LanguageUtils.setCurrentLanguage(context, selectedLanguageCode ?: "en")
             activity?.recreate()
-            onNavigateToOnboardingScreen()
+
+            if (fromSetting) onNavigateBack()
+            else onNavigateToOnboardingScreen()
         }
     )
 }

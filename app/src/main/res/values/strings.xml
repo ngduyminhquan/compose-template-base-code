@@ -1,9 +1,14 @@
 <resources>
     <string name="app_name">Compose Project</string>
+
+    <!--Splash-->
+    <string name="ads_are_about_to_be_shown">Ads are about to be shown…</string>
+
+    <!--Language-->
     <string name="language_title">Language</string>
     <string name="language_done">DONE</string>
     <string name="language_done_icon_description">Done</string>
-    
+
     <!-- Onboarding -->
     <string name="onboarding_title_1">Smart IPTV Player</string>
     <string name="onboarding_subtitle_1">Stream your favorite playlists and media seamlessly on any device.</string>

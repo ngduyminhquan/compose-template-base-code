@@ -47,6 +47,9 @@ fun AppNavigation() {
                 entry<Route.Language> { key ->
                     LanguageScreen(
                         fromSetting = key.fromSetting,
+                        onNavigateBack = {
+                            backStack.removeAt(backStack.size - 1)
+                        },
                         onNavigateToOnboardingScreen = {
                             backStack.add(Route.Onboarding)
                         }
