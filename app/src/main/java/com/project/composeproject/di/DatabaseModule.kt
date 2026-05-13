@@ -1,5 +1,6 @@
 package com.project.composeproject.di
 
+import android.content.ContentResolver
 import android.content.Context
 import androidx.room.Room
 import com.project.composeproject.data.source.database.AppDatabase
@@ -35,4 +36,7 @@ object DatabaseModule {
 
     @Provides
     fun provideChannelSourceDao(database: AppDatabase): ChannelSourceDao = database.channelSourceDao()
+
+    @Provides
+    fun provideContentResolver(@ApplicationContext context: Context): ContentResolver = context.contentResolver
 }
