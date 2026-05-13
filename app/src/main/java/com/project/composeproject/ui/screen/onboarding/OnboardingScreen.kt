@@ -3,7 +3,6 @@ package com.project.composeproject.ui.screen.onboarding
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -45,6 +44,7 @@ import com.project.composeproject.ui.theme.OnboardingIndicatorActive
 import com.project.composeproject.ui.theme.OnboardingIndicatorInactive
 import com.project.composeproject.ui.theme.OnboardingSubtitle
 import com.project.composeproject.ui.theme.OnboardingTitle
+import com.project.composeproject.ui.utils.onSingleClick
 import kotlinx.coroutines.launch
 import network.chaintech.sdpcomposemultiplatform.sdp
 import network.chaintech.sdpcomposemultiplatform.ssp
@@ -233,7 +233,7 @@ private fun OnboardingBottomBar(
                     shape = RoundedCornerShape(50)
                 )
                 .clip(RoundedCornerShape(50))
-                .clickable(
+                .onSingleClick(
                     interactionSource = interactionSource,
                     indication = null
                 ) {

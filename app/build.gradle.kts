@@ -45,6 +45,8 @@ android {
             versionNameSuffix = "-dev"
             isMinifyEnabled = false
             isShrinkResources = false
+
+            applicationIdSuffix = ".dev"
         }
         release {
             val appId = "ca-app-pub-7208941695689653~9843350590"

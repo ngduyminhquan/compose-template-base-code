@@ -43,6 +43,7 @@ import com.project.composeproject.ui.theme.LanguageBackground
 import com.project.composeproject.ui.theme.LanguageItemBackground
 import com.project.composeproject.ui.theme.LanguagePrimary
 import com.project.composeproject.ui.theme.LanguageSecondary
+import com.project.composeproject.ui.utils.onSingleClick
 import com.project.composeproject.utils.LanguageItem
 import com.project.composeproject.utils.LanguageUtils
 import network.chaintech.sdpcomposemultiplatform.sdp
@@ -138,7 +139,7 @@ private fun LanguageTopBar(
 
         if (!showDoneButton) return@Row
         Row(
-            modifier = Modifier.clickable(
+            modifier = Modifier.onSingleClick(
                 interactionSource = interactionSource,
                 indication = null,
                 onClick = onDoneClick
