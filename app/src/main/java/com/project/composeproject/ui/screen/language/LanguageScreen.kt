@@ -24,6 +24,7 @@ import androidx.compose.material3.RadioButton
 import androidx.compose.material3.RadioButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -49,19 +50,25 @@ import network.chaintech.sdpcomposemultiplatform.ssp
 
 @Composable
 fun LanguageScreen(
+    fromSetting: Boolean,
     onNavigateToOnboardingScreen: () -> Unit
 ) {
     val context = LocalContext.current
     val activity = LocalActivity.current
     val languages = remember { LanguageUtils.displayLanguages }
-    var selectedLanguageCode by remember { mutableStateOf(LanguageUtils.getCurrentLanguage(context).code) }
+    var selectedLanguageCode by remember {
+        val currentCode = if (fromSetting) LanguageUtils.getCurrentLanguage(context).code
+        else null
+        mutableStateOf(currentCode)
+    }
 
     LanguageContent(
         languages = languages,
         selectedLanguageCode = selectedLanguageCode,
         onLanguageClick = { selectedLanguageCode = it },
         onDoneClick = {
-            LanguageUtils.setCurrentLanguage(context, selectedLanguageCode)
+            if (selectedLanguageCode == null) return@LanguageContent
+            LanguageUtils.setCurrentLanguage(context, selectedLanguageCode ?: "en")
             activity?.recreate()
             onNavigateToOnboardingScreen()
         }
@@ -71,7 +78,7 @@ fun LanguageScreen(
 @Composable
 private fun LanguageContent(
     languages: List<LanguageItem>,
-    selectedLanguageCode: String,
+    selectedLanguageCode: String?,
     onLanguageClick: (String) -> Unit,
     onDoneClick: () -> Unit
 ) {
@@ -81,7 +88,12 @@ private fun LanguageContent(
             .background(LanguageBackground)
             .statusBarsPadding()
     ) {
-        LanguageTopBar(onDoneClick = onDoneClick)
+        val showDoneButton = selectedLanguageCode != null
+        LanguageTopBar(
+            showDoneButton = showDoneButton,
+            onDoneClick = onDoneClick
+        )
+
         LazyColumn(
             modifier = Modifier
                 .fillMaxWidth()
@@ -102,7 +114,10 @@ private fun LanguageContent(
 }
 
 @Composable
-private fun LanguageTopBar(onDoneClick: () -> Unit) {
+private fun LanguageTopBar(
+    showDoneButton: Boolean,
+    onDoneClick: () -> Unit
+) {
     val interactionSource = remember { MutableInteractionSource() }
 
     Row(
@@ -120,6 +135,8 @@ private fun LanguageTopBar(onDoneClick: () -> Unit) {
             fontWeight = FontWeight.Bold
         )
         Spacer(modifier = Modifier.weight(1f))
+
+        if (!showDoneButton) return@Row
         Row(
             modifier = Modifier.clickable(
                 interactionSource = interactionSource,
