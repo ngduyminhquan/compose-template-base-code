@@ -1,5 +1,6 @@
 package com.project.composeproject.domain.repository
 
+import android.net.Uri
 import com.project.composeproject.domain.model.Channel
 import com.project.composeproject.domain.model.ChannelGroup
 import com.project.composeproject.domain.model.ChannelSource
@@ -36,7 +37,7 @@ interface ChannelRepository {
 
     suspend fun createChannelSourceFromUrl(url: String): DataResult<Long>
 
-    suspend fun createChannelSourceFromFile(uri: String): DataResult<Long>
+    suspend fun createChannelSourceFromFile(uri: Uri): DataResult<Long>
 
     suspend fun deleteChannelSource(channelSourceId: Long): DataResult<Unit>
 

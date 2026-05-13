@@ -1,6 +1,7 @@
 package com.project.composeproject.data.repository
 
 import android.net.Uri
+import android.util.Log
 import androidx.room.withTransaction
 import com.project.composeproject.data.core.m3u.M3uChannel
 import com.project.composeproject.data.mapper.toDomain
@@ -127,12 +128,11 @@ class ChannelRepositoryImpl @Inject constructor(
         }.toDataResult()
     }
 
-    override suspend fun createChannelSourceFromFile(uri: String): DataResult<Long> {
+    override suspend fun createChannelSourceFromFile(uri: Uri): DataResult<Long> {
         return runCatching {
-            val fileUri = Uri.parse(uri)
-            val parsedChannels = m3uPlaylistStorageSource.fetchChannels(fileUri)
+            val parsedChannels = m3uPlaylistStorageSource.fetchChannels(uri)
             createChannelSourceWithChannels(
-                name = uri.toChannelSourceName(fileUri),
+                name = uri.path?.toChannelSourceName(uri) ?: DEFAULT_SOURCE_NAME,
                 sourceType = SourceType.FILE,
                 parsedChannels = parsedChannels,
             )
@@ -145,7 +145,10 @@ class ChannelRepositoryImpl @Inject constructor(
         }.toUnitDataResult()
     }
 
-    override suspend fun renameChannelSource(channelSourceId: Long, name: String): DataResult<Unit> {
+    override suspend fun renameChannelSource(
+        channelSourceId: Long,
+        name: String
+    ): DataResult<Unit> {
         return runCatching {
             val channelSource = requireNotNull(channelSourceDao.getById(channelSourceId)) {
                 "ChannelSource $channelSourceId not found"
@@ -226,10 +229,11 @@ class ChannelRepositoryImpl @Inject constructor(
             ?.substringAfterLast('/')
             ?.takeIf { it.isNotBlank() }
             ?: takeIf { it.isNotBlank() }
-            ?: "M3U Source"
+            ?: DEFAULT_SOURCE_NAME
     }
 
     private companion object {
         const val DEFAULT_GROUP_NAME = "Ungrouped"
+        const val DEFAULT_SOURCE_NAME = "M3U Source"
     }
 }

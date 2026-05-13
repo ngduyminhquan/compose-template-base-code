@@ -12,6 +12,7 @@ import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
+import com.project.composeproject.ui.screen.home.HomeScreen
 import com.project.composeproject.ui.screen.language.LanguageScreen
 import com.project.composeproject.ui.screen.onboarding.OnboardingScreen
 
@@ -57,7 +58,15 @@ fun AppNavigation() {
                 }
 
                 entry<Route.Onboarding> {
-                    OnboardingScreen()
+                    OnboardingScreen(
+                        onNavigateToHomeScreen = {
+                            backStack.add(Route.Home)
+                        }
+                    )
+                }
+
+                entry<Route.Home> {
+                    HomeScreen()
                 }
             }
         )

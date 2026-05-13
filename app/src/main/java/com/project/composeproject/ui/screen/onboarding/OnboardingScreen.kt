@@ -27,15 +27,14 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
-import kotlin.math.absoluteValue
 import com.project.composeproject.R
 import com.project.composeproject.ui.theme.DefaultFontFamily
 import com.project.composeproject.ui.theme.OnboardingButtonBorder
@@ -48,9 +47,12 @@ import com.project.composeproject.ui.utils.onSingleClick
 import kotlinx.coroutines.launch
 import network.chaintech.sdpcomposemultiplatform.sdp
 import network.chaintech.sdpcomposemultiplatform.ssp
+import kotlin.math.absoluteValue
 
 @Composable
-fun OnboardingScreen() {
+fun OnboardingScreen(
+    onNavigateToHomeScreen: () -> Unit = {}
+) {
     val onboardingItems = remember {
         listOf(
             OnboardingItem(
@@ -91,7 +93,7 @@ fun OnboardingScreen() {
             }
         },
         onStartClick = {
-            // TODO: Tạm thời chưa xử lý nút START
+            onNavigateToHomeScreen()
         }
     )
 }
