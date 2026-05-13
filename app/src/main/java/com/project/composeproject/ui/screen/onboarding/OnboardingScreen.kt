@@ -28,6 +28,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -35,6 +36,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
+import kotlin.math.absoluteValue
 import com.project.composeproject.R
 import com.project.composeproject.ui.theme.DefaultFontFamily
 import com.project.composeproject.ui.theme.OnboardingButtonBorder
@@ -116,7 +118,19 @@ private fun OnboardingContent(
                 item = items[page],
                 pagerState = pagerState,
                 onNextClick = onNextClick,
-                onStartClick = onStartClick
+                onStartClick = onStartClick,
+                modifier = Modifier.graphicsLayer {
+                    val pageOffset = pagerState
+                        .getOffsetDistanceInPages(page)
+                        .absoluteValue
+                        .coerceIn(0f, 1f)
+                    val scale = 1f - (pageOffset * 0.1f)
+                    val alpha = 1f - (pageOffset * 0.6f)
+
+                    scaleX = scale
+                    scaleY = scale
+                    this.alpha = alpha
+                }
             )
         }
     }
@@ -127,10 +141,11 @@ private fun OnboardingPage(
     item: OnboardingItem,
     pagerState: PagerState,
     onNextClick: () -> Unit,
-    onStartClick: () -> Unit
+    onStartClick: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
     Column(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Image(
