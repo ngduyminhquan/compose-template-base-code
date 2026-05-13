@@ -21,6 +21,7 @@ appcompat = "1.7.1"
 sdpSspComposeMultiplatform = "1.0.7"
 media3 = "1.8.0"
 constraintlayout = "2.2.1"
+room = "2.7.2"
 
 [libraries]
 adsnextgen = { module = "com.github.trongluan99:AdsNextGen", version.ref = "adsnextgen" }
@@ -51,6 +52,9 @@ sdp-ssp-compose-multiplatform = { module = "network.chaintech:sdp-ssp-compose-mu
 androidx-media3-exoplayer = { module = "androidx.media3:media3-exoplayer", version.ref = "media3" }
 androidx-media3-ui = { module = "androidx.media3:media3-ui", version.ref = "media3" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
+androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
+androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
