@@ -35,4 +35,7 @@ interface ChannelDao {
 
     @Query("SELECT * FROM channels WHERE isFavorited = 1 ORDER BY modifiedAt DESC, id ASC")
     fun observeFavorites(): Flow<List<ChannelEntity>>
+
+    @Query("SELECT * FROM channels ORDER BY modifiedAt DESC, id ASC LIMIT :limit")
+    fun observeRecent(limit: Int): Flow<List<ChannelEntity>>
 }

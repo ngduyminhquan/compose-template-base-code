@@ -62,6 +62,13 @@ class ChannelRepositoryImpl @Inject constructor(
             .catch { emit(DataResult.Error(it.toException())) }
     }
 
+    override fun observeRecentChannels(limit: Int): Flow<DataResult<List<Channel>>> {
+        return channelDao.observeRecent(limit)
+            .map { channels -> DataResult.Success(channels.map { it.toDomain() }) as DataResult<List<Channel>> }
+            .onStart { emit(DataResult.Loading) }
+            .catch { emit(DataResult.Error(it.toException())) }
+    }
+
     override suspend fun favoriteChannel(channelId: Long): DataResult<Unit> {
         return updateChannel(channelId) { channel ->
             channel.copy(

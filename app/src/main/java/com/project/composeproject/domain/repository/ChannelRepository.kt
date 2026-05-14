@@ -16,6 +16,8 @@ interface ChannelRepository {
 
     fun observeFavoriteChannels(): Flow<DataResult<List<Channel>>>
 
+    fun observeRecentChannels(limit: Int = 10): Flow<DataResult<List<Channel>>>
+
     suspend fun deleteChannel(channelId: Long): DataResult<Unit>
 
     suspend fun renameChannel(
