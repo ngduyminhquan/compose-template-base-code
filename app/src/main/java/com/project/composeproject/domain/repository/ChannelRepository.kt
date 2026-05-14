@@ -45,4 +45,8 @@ interface ChannelRepository {
         channelSourceId: Long,
         name: String,
     ): DataResult<Unit>
+
+    fun observeChannelSourcesWithCount(): Flow<DataResult<Map<ChannelSource, Int>>>
+
+    fun observeAllChannelGroupsWithChannels(): Flow<DataResult<Map<ChannelGroup, List<Channel>>>>
 }

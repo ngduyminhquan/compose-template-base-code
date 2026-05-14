@@ -28,4 +28,7 @@ interface ChannelGroupDao {
 
     @Query("SELECT * FROM channel_groups WHERE sourceId = :sourceId ORDER BY modifiedAt DESC, id ASC")
     fun observeBySourceId(sourceId: Long): Flow<List<ChannelGroupEntity>>
+
+    @Query("SELECT * FROM channel_groups ORDER BY modifiedAt DESC, id ASC")
+    fun observeAll(): Flow<List<ChannelGroupEntity>>
 }

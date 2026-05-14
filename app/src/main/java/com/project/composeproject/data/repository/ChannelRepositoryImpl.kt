@@ -162,6 +162,37 @@ class ChannelRepositoryImpl @Inject constructor(
         }.toUnitDataResult()
     }
 
+    override fun observeChannelSourcesWithCount(): Flow<DataResult<Map<ChannelSource, Int>>> {
+        val sourcesFlow = channelSourceDao.observeAll()
+        val groupsFlow = channelGroupDao.observeAll()
+        val channelsFlow = channelDao.observeAll()
+        return kotlinx.coroutines.flow.combine(sourcesFlow, groupsFlow, channelsFlow) { sources, groups, channels ->
+            val mappedSources = sources.map { it.toDomain() }
+            val groupSourceMap = groups.associate { it.id to it.sourceId }
+            val channelsBySourceId = channels.groupBy { groupSourceMap[it.groupId] }
+            val resultMap = mappedSources.associateWith { source ->
+                channelsBySourceId[source.id]?.size ?: 0
+            }
+            DataResult.Success(resultMap) as DataResult<Map<ChannelSource, Int>>
+        }.onStart { emit(DataResult.Loading) }
+         .catch { emit(DataResult.Error(it.toException())) }
+    }
+
+    override fun observeAllChannelGroupsWithChannels(): Flow<DataResult<Map<ChannelGroup, List<Channel>>>> {
+        val groupsFlow = channelGroupDao.observeAll()
+        val channelsFlow = channelDao.observeAll()
+        return kotlinx.coroutines.flow.combine(groupsFlow, channelsFlow) { groups, channels ->
+            val mappedGroups = groups.map { it.toDomain() }
+            val mappedChannels = channels.map { it.toDomain() }
+            val channelsByGroupId = mappedChannels.groupBy { it.groupId }
+            val resultMap = mappedGroups.associateWith { group ->
+                channelsByGroupId[group.id] ?: emptyList()
+            }
+            DataResult.Success(resultMap) as DataResult<Map<ChannelGroup, List<Channel>>>
+        }.onStart { emit(DataResult.Loading) }
+         .catch { emit(DataResult.Error(it.toException())) }
+    }
+
 
     private suspend fun updateChannel(
         channelId: Long,
