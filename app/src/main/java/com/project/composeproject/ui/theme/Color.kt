@@ -28,3 +28,17 @@ val OnboardingIndicatorActive = Black
 val OnboardingIndicatorInactive = Color(0xFF7a7a7b)
 val OnboardingButtonBorder = Black
 val OnboardingButtonText = Black
+
+val HomeBackground = Color(0xFFF5F7FB)
+val HomeSurface = White
+val HomePrimary = Indigo500
+val HomePrimaryDark = Indigo600
+val HomePrimarySoft = Indigo50
+val HomeTextPrimary = Color(0xFF263247)
+val HomeTextSecondary = Gray500
+val HomeIconTint = Color(0xFF8A93A5)
+val HomeBorder = Color(0xFFE8ECF4)
+val HomeOverlay = Color(0xA6000000)
+val HomeHeart = Color(0xFF9AA4B5)
+val HomeTutorialStart = Color(0xFF84A2FF)
+val HomeTutorialEnd = Color(0xFF5F83FF)
