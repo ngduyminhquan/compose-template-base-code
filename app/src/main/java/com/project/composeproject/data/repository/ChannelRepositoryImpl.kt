@@ -182,7 +182,27 @@ class ChannelRepositoryImpl @Inject constructor(
             }
             DataResult.Success(resultMap) as DataResult<Map<ChannelSource, Int>>
         }.onStart { emit(DataResult.Loading) }
-         .catch { emit(DataResult.Error(it.toException())) }
+          .catch { emit(DataResult.Error(it.toException())) }
+    }
+
+    override fun observeChannelSourcesByType(sourceType: SourceType): Flow<DataResult<List<ChannelSource>>> {
+        return observeChannelSources().map { result ->
+            when (result) {
+                is DataResult.Success -> DataResult.Success(result.data.filter { it.sourceType == sourceType })
+                is DataResult.Error -> result
+                DataResult.Loading -> DataResult.Loading
+            }
+        }
+    }
+
+    override fun observeChannelSourcesWithCountByType(sourceType: SourceType): Flow<DataResult<Map<ChannelSource, Int>>> {
+        return observeChannelSourcesWithCount().map { result ->
+            when (result) {
+                is DataResult.Success -> DataResult.Success(result.data.filterKeys { it.sourceType == sourceType })
+                is DataResult.Error -> result
+                DataResult.Loading -> DataResult.Loading
+            }
+        }
     }
 
     override fun observeAllChannelGroupsWithChannels(): Flow<DataResult<Map<ChannelGroup, List<Channel>>>> {

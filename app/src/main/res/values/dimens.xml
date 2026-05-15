@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="home_screen_padding">16dp</dimen>
+    <dimen name="home_gap_xs">4dp</dimen>
+    <dimen name="home_gap_sm">8dp</dimen>
+    <dimen name="home_gap_md">12dp</dimen>
+    <dimen name="home_gap_lg">16dp</dimen>
+    <dimen name="home_top_bar_height">40dp</dimen>
+    <dimen name="home_banner_height">132dp</dimen>
+    <dimen name="home_tabs_height">48dp</dimen>
+    <dimen name="home_bottom_nav_height">72dp</dimen>
+    <dimen name="home_radius_sm">8dp</dimen>
+    <dimen name="home_radius_md">12dp</dimen>
+    <dimen name="home_radius_lg">16dp</dimen>
+    <dimen name="home_icon_sm">18dp</dimen>
+    <dimen name="home_icon_md">24dp</dimen>
+    <dimen name="home_icon_lg">48dp</dimen>
+    <dimen name="home_add_button_size">56dp</dimen>
+    <dimen name="home_source_card_height">62dp</dimen>
+    <dimen name="home_video_card_width">148dp</dimen>
+    <dimen name="home_video_card_height">84dp</dimen>
+    <dimen name="home_tutorial_height">96dp</dimen>
+    <dimen name="home_tutorial_image_width">120dp</dimen>
+    <dimen name="home_empty_height">240dp</dimen>
+    <dimen name="home_overlay_bottom_margin">88dp</dimen>
+    <dimen name="home_add_action_height">44dp</dimen>
+    <dimen name="home_text_10">10sp</dimen>
+    <dimen name="home_text_11">11sp</dimen>
+    <dimen name="home_text_12">12sp</dimen>
+    <dimen name="home_text_13">13sp</dimen>
+    <dimen name="home_text_14">14sp</dimen>
+    <dimen name="home_text_16">16sp</dimen>
+</resources>

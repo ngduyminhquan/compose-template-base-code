@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/home_bg">
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/home_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingStart="@dimen/home_screen_padding"
+        android:paddingTop="@dimen/home_gap_sm"
+        android:paddingEnd="@dimen/home_screen_padding"
+        android:paddingBottom="@dimen/home_bottom_nav_height">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/home_top_bar_height">
+
+                <ImageView
+                    android:id="@+id/iv_premium"
+                    android:layout_width="@dimen/home_icon_md"
+                    android:layout_height="@dimen/home_icon_md"
+                    android:contentDescription="@string/home_desc_premium"
+                    android:src="@drawable/ic_premium"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_home_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter_regular"
+                    android:text="@string/home_title"
+                    android:textColor="@color/home_primary"
+                    android:textSize="@dimen/home_text_16"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageButton
+                    android:id="@+id/btn_help"
+                    android:layout_width="@dimen/home_icon_md"
+                    android:layout_height="@dimen/home_icon_md"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/home_desc_help"
+                    android:padding="@dimen/home_gap_xs"
+                    android:src="@drawable/ic_help"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <ImageView
+                android:id="@+id/iv_banner"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/home_banner_height"
+                android:layout_marginTop="@dimen/home_gap_sm"
+                android:contentDescription="@string/home_desc_banner"
+                android:scaleType="centerCrop"
+                android:src="@drawable/img_home_banner_1" />
+
+            <LinearLayout
+                android:id="@+id/tabs_container"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/home_tabs_height"
+                android:layout_marginTop="@dimen/home_gap_md"
+                android:background="@drawable/bg_home_card"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="@dimen/home_gap_xs">
+
+                <ImageButton
+                    android:id="@+id/btn_filter_all"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_home_selected"
+                    android:contentDescription="@string/home_tab_all"
+                    android:padding="@dimen/home_gap_sm"
+                    android:src="@drawable/ic_all" />
+
+                <ImageButton
+                    android:id="@+id/btn_filter_url"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/home_tab_url"
+                    android:padding="@dimen/home_gap_sm"
+                    android:src="@drawable/ic_link" />
+
+                <ImageButton
+                    android:id="@+id/btn_filter_stream"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/home_tab_stream"
+                    android:padding="@dimen/home_gap_sm"
+                    android:src="@drawable/ic_stream" />
+
+                <ImageButton
+                    android:id="@+id/btn_filter_file"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/home_tab_file"
+                    android:padding="@dimen/home_gap_sm"
+                    android:src="@drawable/ic_file" />
+
+                <ImageButton
+                    android:id="@+id/btn_filter_device"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/home_tab_device"
+                    android:padding="@dimen/home_gap_sm"
+                    android:src="@drawable/ic_media" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/empty_state"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                tools:visibility="gone">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/home_tutorial_height"
+                    android:layout_marginTop="@dimen/home_gap_md"
+                    android:background="@drawable/bg_home_tutorial"
+                    android:padding="@dimen/home_gap_lg">
+
+                    <TextView
+                        android:id="@+id/tv_tutorial_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_regular"
+                        android:text="@string/home_tutorial_title"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/home_text_13"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_tutorial_subtitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/home_gap_xs"
+                        android:fontFamily="@font/inter_regular"
+                        android:text="@string/home_tutorial_subtitle"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/home_text_11"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_tutorial_title" />
+
+                    <TextView
+                        android:id="@+id/btn_get_started"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_home_pill"
+                        android:fontFamily="@font/inter_regular"
+                        android:paddingStart="@dimen/home_gap_md"
+                        android:paddingTop="@dimen/home_gap_xs"
+                        android:paddingEnd="@dimen/home_gap_md"
+                        android:paddingBottom="@dimen/home_gap_xs"
+                        android:text="@string/home_get_started"
+                        android:textColor="@color/home_primary"
+                        android:textSize="@dimen/home_text_10"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <ImageView
+                        android:layout_width="@dimen/home_tutorial_image_width"
+                        android:layout_height="match_parent"
+                        android:contentDescription="@string/home_tutorial_title"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/img_banner_tutorial_background"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/home_empty_height"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/home_icon_lg"
+                        android:layout_height="@dimen/home_icon_lg"
+                        android:contentDescription="@string/home_no_playlist"
+                        android:src="@drawable/ic_empty_playlist" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/home_gap_sm"
+                        android:fontFamily="@font/inter_regular"
+                        android:text="@string/home_no_playlist"
+                        android:textColor="@color/home_text_primary"
+                        android:textSize="@dimen/home_text_13"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/home_gap_xs"
+                        android:fontFamily="@font/inter_regular"
+                        android:text="@string/home_no_playlist_hint"
+                        android:textColor="@color/home_text_secondary"
+                        android:textSize="@dimen/home_text_11" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/content_state"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/home_gap_md"
+                android:orientation="vertical">
+
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:columnCount="2"
+                    android:rowCount="2">
+
+                    <include android:id="@+id/card_file" layout="@layout/view_home_source_card" />
+                    <include android:id="@+id/card_device" layout="@layout/view_home_source_card" />
+                    <include android:id="@+id/card_url" layout="@layout/view_home_source_card" />
+                    <include android:id="@+id/card_stream" layout="@layout/view_home_source_card" />
+                </GridLayout>
+
+                <include layout="@layout/view_home_section" />
+                <include android:id="@+id/section_favorite" layout="@layout/view_home_section" />
+                <include android:id="@+id/section_playlist" layout="@layout/view_home_section" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <View
+        android:id="@+id/add_overlay_scrim"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/home_overlay"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/add_overlay_actions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="@dimen/home_screen_padding"
+        android:layout_marginBottom="@dimen/home_overlay_bottom_margin"
+        android:gravity="end"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <include android:id="@+id/action_play_single" layout="@layout/view_home_add_action" />
+        <include android:id="@+id/action_import_url" layout="@layout/view_home_add_action" />
+        <include android:id="@+id/action_import_device" layout="@layout/view_home_add_action" />
+        <include android:id="@+id/action_upload_file" layout="@layout/view_home_add_action" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/bottom_nav"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/home_bottom_nav_height"
+        android:layout_gravity="bottom"
+        android:background="@color/home_card"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <include android:id="@+id/nav_home" layout="@layout/view_home_bottom_item" />
+        <include android:id="@+id/nav_channel" layout="@layout/view_home_bottom_item" />
+
+        <ImageButton
+            android:id="@+id/btn_add"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/home_add_button_size"
+            android:layout_weight="1"
+            android:background="@drawable/bg_home_add"
+            android:contentDescription="@string/home_desc_add"
+            android:padding="@dimen/home_gap_lg"
+            android:src="@drawable/ic_add_more" />
+
+        <include android:id="@+id/nav_favorite" layout="@layout/view_home_bottom_item" />
+        <include android:id="@+id/nav_settings" layout="@layout/view_home_bottom_item" />
+    </LinearLayout>
+</FrameLayout>

@@ -7,4 +7,16 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="home_bg">#FFEFF2F8</color>
+    <color name="home_primary">#FF5D6DFF</color>
+    <color name="home_primary_light">#FFE8EBFF</color>
+    <color name="home_text_primary">#FF182033</color>
+    <color name="home_text_secondary">#FF8D98A8</color>
+    <color name="home_card">#FFFFFFFF</color>
+    <color name="home_tutorial_start">#FF7D83FF</color>
+    <color name="home_tutorial_end">#FF59B5FF</color>
+    <color name="home_overlay">#CC000000</color>
+    <color name="home_shadow">#33000000</color>
+    <color name="home_transparent">#00000000</color>
+    <color name="home_video_scrim">#99000000</color>
 </resources>

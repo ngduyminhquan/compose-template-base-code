@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="@dimen/home_add_action_height"
+    android:layout_marginTop="@dimen/home_gap_sm"
+    android:background="@drawable/bg_home_card"
+    android:clickable="true"
+    android:focusable="true"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingStart="@dimen/home_gap_md"
+    android:paddingEnd="@dimen/home_gap_md">
+
+    <ImageView
+        android:id="@+id/iv_action_icon"
+        android:layout_width="@dimen/home_icon_sm"
+        android:layout_height="@dimen/home_icon_sm"
+        android:contentDescription="@string/home_desc_add"
+        tools:src="@drawable/ic_add_link" />
+
+    <TextView
+        android:id="@+id/tv_action_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/home_gap_sm"
+        android:fontFamily="@font/inter_regular"
+        android:textColor="@color/home_text_primary"
+        android:textSize="@dimen/home_text_12"
+        tools:text="Import Playlist URL" />
+</LinearLayout>

@@ -5,6 +5,7 @@ import com.project.composeproject.domain.model.Channel
 import com.project.composeproject.domain.model.ChannelGroup
 import com.project.composeproject.domain.model.ChannelSource
 import com.project.composeproject.domain.model.DataResult
+import com.project.composeproject.domain.model.SourceType
 import kotlinx.coroutines.flow.Flow
 
 interface ChannelRepository {
@@ -49,6 +50,10 @@ interface ChannelRepository {
     ): DataResult<Unit>
 
     fun observeChannelSourcesWithCount(): Flow<DataResult<Map<ChannelSource, Int>>>
+
+    fun observeChannelSourcesByType(sourceType: SourceType): Flow<DataResult<List<ChannelSource>>>
+
+    fun observeChannelSourcesWithCountByType(sourceType: SourceType): Flow<DataResult<Map<ChannelSource, Int>>>
 
     fun observeAllChannelGroupsWithChannels(): Flow<DataResult<Map<ChannelGroup, List<Channel>>>>
 }
