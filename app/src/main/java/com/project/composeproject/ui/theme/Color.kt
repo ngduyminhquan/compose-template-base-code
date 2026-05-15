@@ -28,3 +28,22 @@ val OnboardingIndicatorActive = Black
 val OnboardingIndicatorInactive = Color(0xFF7a7a7b)
 val OnboardingButtonBorder = Black
 val OnboardingButtonText = Black
+
+// Home Screen Colors
+val HomeBackground = Color(0xFFF5F5F5)
+val HomeCardBackground = White
+val HomeTutorialBackground = Color(0xFF5B67F1)
+val HomeTutorialText = White
+val HomeFilterTabSelected = Color(0xFF5B67F1)
+val HomeFilterTabUnselected = Color(0xFF9CA3AF)
+val HomeFilterTabBackground = White
+val HomeSectionTitle = Color(0xFF1F2937)
+val HomeChannelName = Color(0xFF374151)
+val HomeFavoriteActive = Color(0xFFEF4444)
+val HomeFavoriteInactive = Color(0xFF9CA3AF)
+val HomeSourceCardBorder = Color(0xFFE5E7EB)
+val HomeOverlayBackground = Color(0x80000000)
+val HomeAddButtonBackground = White
+val HomeAddButtonText = Color(0xFF374151)
+val HomeBottomNavSelected = Color(0xFF5B67F1)
+val HomeBottomNavUnselected = Color(0xFF9CA3AF)

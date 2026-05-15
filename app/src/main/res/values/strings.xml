@@ -20,4 +20,63 @@
     <string name="onboarding_subtitle_4">Discover and watch live IPTV shared from around the world.</string>
     <string name="onboarding_next">NEXT</string>
     <string name="onboarding_start">START</string>
+
+    <!-- Home Screen -->
+    <string name="home_app_title">IPTV Smart Player</string>
+    <string name="home_help_icon_description">Help</string>
+    <string name="home_crown_icon_description">Premium</string>
+    
+    <!-- Filter Tabs -->
+    <string name="home_filter_all">ALL</string>
+    <string name="home_filter_url">URL</string>
+    <string name="home_filter_stream">STREAM</string>
+    <string name="home_filter_file">FILE</string>
+    <string name="home_filter_device">DEVICE</string>
+    
+    <!-- Tutorial Card -->
+    <string name="home_tutorial_title">Tutorial</string>
+    <string name="home_tutorial_description">Learn how to use IPTV</string>
+    <string name="home_tutorial_button">Get started</string>
+    
+    <!-- Empty State -->
+    <string name="home_empty_title">No playlist found</string>
+    <string name="home_empty_description">Add new playlist by click + button</string>
+    <string name="home_empty_icon_description">Empty playlist</string>
+    
+    <!-- Source Cards -->
+    <string name="home_source_file">File</string>
+    <string name="home_source_device">Device</string>
+    <string name="home_source_url">URL</string>
+    <string name="home_source_stream">Stream</string>
+    <string name="home_source_channels">%d channels</string>
+    <string name="home_source_menu_description">Source menu</string>
+    
+    <!-- Sections -->
+    <string name="home_section_recent">Recent</string>
+    <string name="home_section_favorite">Favorite</string>
+    <string name="home_section_view_all">View All</string>
+    <string name="home_section_count">(%d)</string>
+    
+    <!-- Channel Item -->
+    <string name="home_channel_favorite_description">Favorite</string>
+    <string name="home_channel_menu_description">Channel menu</string>
+    
+    <!-- Popup Menu -->
+    <string name="home_menu_edit_playlist">Edit Playlist</string>
+    <string name="home_menu_delete_playlist">Delete Playlist</string>
+    <string name="home_menu_edit_channel">Edit Channel</string>
+    <string name="home_menu_delete_channel">Delete Channel</string>
+    
+    <!-- Add Overlay -->
+    <string name="home_add_play_single_url">Play Single URL / Stream URL</string>
+    <string name="home_add_import_playlist_url">Import Playlist URL</string>
+    <string name="home_add_import_from_device">Import from Device</string>
+    <string name="home_add_upload_m3u_file">Upload M3U File</string>
+    
+    <!-- Bottom Navigation -->
+    <string name="home_nav_home">Home</string>
+    <string name="home_nav_channel">Channel</string>
+    <string name="home_nav_add">Add</string>
+    <string name="home_nav_favorite">Favorite</string>
+    <string name="home_nav_settings">Settings</string>
 </resources>

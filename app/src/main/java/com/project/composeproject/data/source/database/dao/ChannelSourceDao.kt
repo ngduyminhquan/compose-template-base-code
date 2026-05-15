@@ -28,4 +28,7 @@ interface ChannelSourceDao {
 
     @Query("SELECT * FROM channel_sources ORDER BY modifiedAt DESC, id ASC")
     fun observeAll(): Flow<List<ChannelSourceEntity>>
+
+    @Query("SELECT * FROM channel_sources WHERE sourceType = :sourceType ORDER BY modifiedAt DESC, id ASC")
+    fun observeByType(sourceType: String): Flow<List<ChannelSourceEntity>>
 }
