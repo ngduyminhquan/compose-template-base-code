@@ -20,4 +20,45 @@
     <string name="onboarding_subtitle_4">Discover and watch live IPTV shared from around the world.</string>
     <string name="onboarding_next">NEXT</string>
     <string name="onboarding_start">START</string>
+
+    <!-- Home Screen -->
+    <string name="home_app_title">IPTV Smart Player</string>
+    <string name="home_help_icon_desc">Help</string>
+    <string name="home_banner_desc">Banner</string>
+    <string name="home_tab_all">ALL</string>
+    <string name="home_tab_url">URL</string>
+    <string name="home_tab_stream">STREAM</string>
+    <string name="home_tab_file">FILE</string>
+    <string name="home_tab_device">DEVICE</string>
+    
+    <string name="home_tutorial_title">Tutorial</string>
+    <string name="home_tutorial_desc">Learn how to use IPTV</string>
+    <string name="home_tutorial_get_started">Get started</string>
+    <string name="home_no_playlist_found">No playlist found</string>
+    <string name="home_add_new_playlist_desc">Add new playlist by click + button</string>
+    
+    <string name="home_source_file">File</string>
+    <string name="home_source_device">Device</string>
+    <string name="home_source_url">URL</string>
+    <string name="home_source_stream">Stream</string>
+    <string name="home_channels_count">%d channels</string>
+    
+    <string name="home_recent">Recent</string>
+    <string name="home_favorite">Favorite</string>
+    <string name="home_view_all">View All</string>
+    
+    <string name="home_edit_playlist">Edit Playlist</string>
+    <string name="home_delete_playlist">Delete Playlist</string>
+    <string name="home_edit_channel">Edit Channel</string>
+    <string name="home_delete_channel">Delete Channel</string>
+    
+    <string name="home_add_play_single">Play Single URL / Stream URL</string>
+    <string name="home_add_import_url">Import Playlist URL</string>
+    <string name="home_add_import_device">Import from Device</string>
+    <string name="home_add_upload_m3u">Upload M3U File</string>
+    
+    <string name="home_nav_home">Home</string>
+    <string name="home_nav_channel">Channel</string>
+    <string name="home_nav_favorite">Favorite</string>
+    <string name="home_nav_settings">Settings</string>
 </resources>

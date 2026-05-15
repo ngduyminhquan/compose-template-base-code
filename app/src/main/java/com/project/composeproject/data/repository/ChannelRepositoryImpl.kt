@@ -200,6 +200,29 @@ class ChannelRepositoryImpl @Inject constructor(
          .catch { emit(DataResult.Error(it.toException())) }
     }
 
+    override fun observeChannelSourcesByType(sourceType: SourceType): Flow<DataResult<List<ChannelSource>>> {
+        return channelSourceDao.observeByType(sourceType.name)
+            .map { channelSources -> DataResult.Success(channelSources.map { it.toDomain() }) as DataResult<List<ChannelSource>> }
+            .onStart { emit(DataResult.Loading) }
+            .catch { emit(DataResult.Error(it.toException())) }
+    }
+
+    override fun observeChannelSourcesWithCountByType(sourceType: SourceType): Flow<DataResult<Map<ChannelSource, Int>>> {
+        val sourcesFlow = channelSourceDao.observeByType(sourceType.name)
+        val groupsFlow = channelGroupDao.observeAll()
+        val channelsFlow = channelDao.observeAll()
+        return kotlinx.coroutines.flow.combine(sourcesFlow, groupsFlow, channelsFlow) { sources, groups, channels ->
+            val mappedSources = sources.map { it.toDomain() }
+            val groupSourceMap = groups.associate { it.id to it.sourceId }
+            val channelsBySourceId = channels.groupBy { groupSourceMap[it.groupId] }
+            val resultMap = mappedSources.associateWith { source ->
+                channelsBySourceId[source.id]?.size ?: 0
+            }
+            DataResult.Success(resultMap) as DataResult<Map<ChannelSource, Int>>
+        }.onStart { emit(DataResult.Loading) }
+         .catch { emit(DataResult.Error(it.toException())) }
+    }
+
 
     private suspend fun updateChannel(
         channelId: Long,
