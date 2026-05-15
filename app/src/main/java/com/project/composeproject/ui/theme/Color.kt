@@ -28,3 +28,11 @@ val OnboardingIndicatorActive = Black
 val OnboardingIndicatorInactive = Color(0xFF7a7a7b)
 val OnboardingButtonBorder = Black
 val OnboardingButtonText = Black
+
+val HomeBackground = Color(0xFFEEEEEE)
+val HomeTopBarTitle = Color(0xFF5F5DFF)
+val HomeTutorialBackground = Color(0xFF7A97FF)
+val HomeTutorialText = White
+val HomeEmptyText = Color(0xFF4B5563)
+val HomeSectionTitle = Color(0xFF1F2937)
+val HomeOverlayBackground = Color(0x99000000)
