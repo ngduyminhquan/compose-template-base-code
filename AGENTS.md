@@ -119,14 +119,23 @@ or repositories - the existing code does.
 ## Documentation workflow
 
 - Per-screen docs live under `docs/<screen-name>/`:
+  - `00-plan.md` - workflow plan/tracking file owned by the
+    `feature-workflow-orchestrator` skill (see below).
   - `01-srs.md` - functional spec only (no tech).
   - `02-architecture.md` (legacy) or `02-ui-layer.md` + `03-data-layer.md`
     (current pattern - see `docs/iap-screen/`).
 - The `.opencode/skills/` directory contains the generators
   (`srs-generator`, `architecture-designer`, `ui-android-compose`,
-  `ui-android-xml`, `android-resource-policy`, `android-code-indexer`).
-  Use the `skill` tool when a task matches their description; do not
-  duplicate their workflow ad hoc.
+  `ui-android-xml`, `android-resource-policy`, `android-code-indexer`,
+  `feature-workflow-orchestrator`). Use the `skill` tool when a task matches
+  their description; do not duplicate their workflow ad hoc.
+- For end-to-end feature work (idea -> code), prefer the
+  `feature-workflow-orchestrator` skill. It chains
+  `srs-generator` -> `architecture-designer` -> Data Layer impl ->
+  `ui-android-compose` -> verify, manages `docs/<feature>/00-plan.md`, and
+  enforces a user-confirmation gate between phases. Don't run the sub-skills
+  ad hoc when a full feature is requested - the orchestrator owns the order
+  and the plan file.
 - `.agent/skills/` mirrors `.opencode/skills/` for non-OpenCode tools.
   Treat `.opencode/skills/` as the source of truth for OpenCode sessions.
 
